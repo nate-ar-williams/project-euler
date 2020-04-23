@@ -1,0 +1,30 @@
+euclid's formula
+
+m > n > 0
+m and n are coprime, not both odd
+coprime means they're only both divisible by 1; any prime that divids one doesn't divide the other
+AKA their greatest common divisor (gcd) is 1
+
+
+a = k * (m^2 - n^2)
+b = k * (2mn)
+c = k * (a^2 + b^2)
+
+need a way of generating two coprime numbers
+	first number, m, is > 1
+	n < m
+	if m is odd, n must be even
+	ensure m and n share no prime factors
+		let's call this last step optional
+
+
+m = 2
+n = 1
+a = 3
+b = 4
+c = 5
+
+m starts at 2, generate n
+for a given m, generate all possible n's
+calculate triples from each unique m and n
+increase m by 1

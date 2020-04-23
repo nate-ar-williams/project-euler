@@ -1,0 +1,70 @@
+gen next largest palindrome
+	(small optimization) if palindrome is odd, don't try even divisors
+while quotient = palindrome / divisor < maxDivisor (1000 in our case)
+	if quotient is whole number, we're done
+		return palindrome, divisor, quotient
+
+palindrome will be of form ABCCBA, ABCBA, ABBA, ABA, AA, A
+
+genLargestPalindromeBelow(x)
+	# make life easy. we know we're dealing with 6 digits or less
+	digits = []
+	while x > 0:
+		digits.append(x % 10)
+		x = x // 10
+
+	# next lowest will be achieved by decreasing innermost numbers
+	# if they're already 0, increase to 9 and move out
+	
+	numDigits = len(digits)
+	isEvenLength = numDigits % 2 == 0
+	innermostIndex = numDigits // 2 
+	# in the case of odd length, this leftIndex is correct
+	leftIndex = innerMostIndex - 1
+	rightIndex = innermostIndex + 1
+	if isEvenLength:
+		leftIndex -= 1
+	
+	innermostValue = digits[innermostIndex]
+
+# 	something like this 
+	# while innermost == 0: innermost = 9, innermostIndex++
+	while innermostValue == 0:
+		digits[innermostIndex] = 0
+		if isEvenLength:	= 0
+			digits[innermostIndex - (distanceFromCenter * 2) - 1] 	
+
+		
+
+behavior needs to be this:
+	work inside out
+	decrease innermost pair or single digit if it's not 0
+		if it's 0, increase it to 9 and decrease the next pair
+
+
+def genNextLargestPalindrome(x):
+    digits = getDigits(x)
+     numDigits = len(digits)
+     isEvenLength = numDigits % 2 == 0
+     innermostIndex = numDigits // 2
+     rightIndex = innermostIndex + 1
+     leftIndex = innermostIndex - 1
+     if isEvenLength:
+             leftIndex -= 1
+     if digits[innermostIndex] != 0:
+             digits[innermostIndex] -= 1
+             if isEvenLength:
+                     digits[innermostIndex - 1] -= 1
+     else:
+             digits[innermostIndex] = 9
+             if isEvenLength:
+                     digits[innermostIndex - 1] = 9
+             while digits[leftIndex] == 0:
+                     digits[leftIndex] = 9
+                     leftIndex -= 1
+                     digits[rightIndex] = 9
+                     rightIndex += 1
+             digits[leftIndex] -= 1
+             digits[rightIndex] -= 1
+     return getInt(digits)
+

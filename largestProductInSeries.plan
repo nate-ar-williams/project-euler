@@ -1,0 +1,14 @@
+read in digits
+index pointing to start of series and end
+difference/distance between indices must always be 12
+multiply 13 digits contained in indices
+store as max
+range 13 to digitLength
+	increase startIndex and endIndex
+	div by digits[startIndex] (not 0)
+	multiply by digits[endIndex]
+	if new product > maxProduct, set maxProduct to newProduct
+
+potential optimizations:
+	skip entirely over any series containing a 0
+	skip if digits[newIndex] < digits[oldIndex] ?
